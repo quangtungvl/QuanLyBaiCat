@@ -9,7 +9,7 @@ public class ChuXe {
 
     private String tenChuXe;
     private long soDTChuXe;
-    private HashMap<String, Object> xesohuu;
+    private HashMap<String, Object> xeSoHuu;
 
     public ChuXe() {
     }
@@ -23,10 +23,10 @@ public class ChuXe {
         this.soDTChuXe = soDTChuXe;
     }
 
-    public ChuXe(String tenChuXe, long soDTChuXe, HashMap<String, Object> xesohuu) {
+    public ChuXe(String tenChuXe, long soDTChuXe, HashMap<String, Object> xeSoHuu) {
         this.tenChuXe = tenChuXe;
         this.soDTChuXe = soDTChuXe;
-        this.xesohuu = xesohuu;
+        this.xeSoHuu = xeSoHuu;
     }
 
     public String getTenChuXe() {
@@ -38,8 +38,8 @@ public class ChuXe {
         return soDTChuXe;
     }
 
-    public HashMap<String, Object> getXesohuu() {
-        return xesohuu;
+    public HashMap<String, Object> getXeSoHuu() {
+        return xeSoHuu;
     }
 }
 

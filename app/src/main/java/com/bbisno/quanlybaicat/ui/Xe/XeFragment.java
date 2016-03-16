@@ -14,17 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 
+import com.bbisno.quanlybaicat.helper.DividerItemDecoration;
 import com.bbisno.quanlybaicat.Models.Xe;
-import com.bbisno.quanlybaicat.QuanLyActivity;
 import com.bbisno.quanlybaicat.R;
 import com.bbisno.quanlybaicat.ultils.Constant;
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.firebase.ui.FirebaseRecyclerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -118,6 +113,7 @@ public class XeFragment extends Fragment {
                 });
             }
         };
+        mRecyclerViewXe.addItemDecoration(new DividerItemDecoration(getContext(),LinearLayoutManager.VERTICAL));
 
 
 

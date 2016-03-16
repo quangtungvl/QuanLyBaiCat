@@ -224,8 +224,8 @@ public class AddEditXeFragment extends Fragment {
     private void saveData() {
 
         Firebase mRefXe = mRef.child(Constant.LINK_XE).child(String.valueOf(edtSoXe.getText()) + "/");
-        Firebase mRefChuXeNew = mRef.child("chuxe/" + tenChuXeNew);
-        Firebase mRefChuXeOld = mRef.child("chuxe/" + tenChuXeOld);
+        Firebase mRefChuXeNew = mRef.child(Constant.LINK_CHUXE + tenChuXeNew);
+        Firebase mRefChuXeOld = mRef.child(Constant.LINK_CHUXE + tenChuXeOld);
 
         while (kiemtraData()) {
             //kiểm tra số xe có tồn tại chưa, có thì xóa chủ xe củ
@@ -233,7 +233,13 @@ public class AddEditXeFragment extends Fragment {
 
 
             long soXe = Long.parseLong(String.valueOf(edtSoXe.getText()));
-            double khoiluong = Double.parseDouble(String.valueOf(edtKhoiluong.getText()));
+            double khoiluong;
+            //
+            if (!edtKhoiluong.getText().toString().equals("")) {
+                khoiluong = Double.parseDouble(String.valueOf(edtKhoiluong.getText()));
+            } else khoiluong = 0.0;
+
+            //
             HashMap<String, Object> mapTenChuXe = new HashMap<String, Object>();
 
             Xe xe = new Xe(blXeNha, soXe, khoiluong);
@@ -244,15 +250,17 @@ public class AddEditXeFragment extends Fragment {
             if (mLVChuXe.getCheckedItemPosition() >= 0) {
                 //add value chuxe vo xe
 
-                mapTenChuXe.put("chuXe/" + tenChuXeNew, true);
+                mapTenChuXe.put(Constant.CHUXE + tenChuXeNew, true);
                 mRefXe.updateChildren(mapTenChuXe);
 
                 Map<String, Object> mapXesohuu = new HashMap<String, Object>();
-                mapXesohuu.put("xesohuu/" + soXe, true);
+                mapXesohuu.put(Constant.XESOHUU + soXe, true);
                 mRefChuXeNew.updateChildren(mapXesohuu);
 
 
             }
+            Toast.makeText(getContext(), edtSoXe.getText().toString() + getString(R.string.toast_luuthanhcong), Toast.LENGTH_SHORT).show();
+            getActivity().getSupportFragmentManager().popBackStack();
             break;
         }
 
@@ -260,13 +268,13 @@ public class AddEditXeFragment extends Fragment {
     }
 
     private void delChuXeOld() {
-        Firebase mref = mRef.child("chuxe/" + tenChuXeOld).child("/xesohuu/" + String.valueOf(edtSoXe.getText()));
+        Firebase mref = mRef.child(Constant.LINK_CHUXE + tenChuXeOld + "/" + Constant.XESOHUU + String.valueOf(edtSoXe.getText()));
         mref.removeValue();
 
     }
 
     private void kiemtraEditXe() {
-        //kiem tra if là edit xe, update chuxe thi remove chuxe cu,add moi
+        //kiem tra xe đã có, if update chuxe mới thi remove chuxe cu
         Firebase iseditxe = mRef.child(Constant.LINK_XE + "/" + edtSoXe.getText().toString());
         iseditxe.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -296,11 +304,11 @@ public class AddEditXeFragment extends Fragment {
             blXeNha = false;
         }
         if (rdgXe.getCheckedRadioButtonId() < 0) {
-            Toast.makeText(getContext(), "Chưa chọn loại xe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.toast_chuachonloaixe, Toast.LENGTH_SHORT).show();
             return false;
         }
         if (edtSoXe.getText().toString().trim().isEmpty()) {
-            Toast.makeText(getContext(), "Chưa nhập số xe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.toast_chuanhapsoxe, Toast.LENGTH_SHORT).show();
             return false;
 
         } else {

@@ -16,11 +16,11 @@ public class Constant {
     public static final String SOXE = "soXe";
     public static final String KHOILUONGXE = "khoiluongXe";
     public static final String XENHA = "xeNha";
-    public static final String XEOF = "xeOf";
+    public static final String CHUXE = "chuXe/";
     //
     public static final String TENCHUXE = "tenChuXe";
     public static final String SODTCHUXE = "soDTChuXe";
-    public static final String XESOHUU = "xeSoHuu";
+    public static final String XESOHUU = "xeSoHuu/";
 
 
     //String key xac dinh cac action add edit fragment

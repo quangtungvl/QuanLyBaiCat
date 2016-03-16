@@ -4,4 +4,7 @@
     <string name="firebase_link_xe">xe</string>
     <string name="firebase_link_chuxe">chuxe</string>
     <string name="title_addeditXe">Thêm Sửa Xe</string>
+    <string name="toast_luuthanhcong">" lưu thành công"</string>
+    <string name="toast_chuachonloaixe">Chưa chọn loại xe</string>
+    <string name="toast_chuanhapsoxe">Chưa nhập số xe</string>
 </resources>
