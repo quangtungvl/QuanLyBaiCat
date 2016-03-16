@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_quanlyxe">Quản Lý Xe</string>
+    <string name="firebase_link_xe">xe</string>
+    <string name="firebase_link_chuxe">chuxe</string>
+    <string name="title_addeditXe">Thêm Sửa Xe</string>
+</resources>

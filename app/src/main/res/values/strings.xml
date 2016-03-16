@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">QuanLyBaiCat</string>
+    <string name="title_activity_phuong_tien">PhuongTienActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_hoat_dong">HoatDongActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_quan_ly">QuanLyActivity</string>
+    <string name="title_quanlyxe">Quản Lý Xe</string>
+    <string name="firebase_link_xe">xe</string>
+    <string name="firebase_link_chuxe">chuxe</string>
+    <string name="title_addeditXe">Thêm Sửa Xe</string>
+</resources>
