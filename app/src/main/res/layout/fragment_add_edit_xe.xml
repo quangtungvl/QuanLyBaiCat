@@ -46,7 +46,7 @@
         android:layout_marginTop="16dp"
         android:text="Số Xe"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-       />
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -97,8 +97,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/mLV_Xe_listChuXe"
         android:layout_gravity="center_horizontal"
-        android:choiceMode="singleChoice"
-        />
-
+        android:choiceMode="singleChoice" />
 
 </LinearLayout>

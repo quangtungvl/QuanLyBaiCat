@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -23,6 +24,7 @@ import com.bbisno.quanlybaicat.Models.ChuXe;
 import com.bbisno.quanlybaicat.Models.Xe;
 import com.bbisno.quanlybaicat.R;
 import com.bbisno.quanlybaicat.ultils.Constant;
+import com.bbisno.quanlybaicat.ultils.Untils;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -32,6 +34,7 @@ import com.firebase.ui.FirebaseListAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -154,10 +157,12 @@ public class AddEditXeFragment extends Fragment {
                         Log.d("bbisno", "positionChuXe i:" + positionChuXe);
                         mLVChuXe.clearFocus();
                         mLVChuXe.setItemChecked(positionChuXe, true);
+
                     }
                 }
             }
         };
+
         //set sự kiện lấy tên chủ xe mới để save data
         mLVChuXe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -211,8 +216,11 @@ public class AddEditXeFragment extends Fragment {
     private void clearData() {
         edtSoXe.setText("");
         edtKhoiluong.setText("");
+
         mLVChuXe.clearChoices();
-        mLVChuXe.requestLayout();
+        mLVChuXe.setItemChecked(-1, true);
+
+
     }
 
     @Override
@@ -267,11 +275,6 @@ public class AddEditXeFragment extends Fragment {
 
     }
 
-    private void delChuXeOld() {
-        Firebase mref = mRef.child(Constant.LINK_CHUXE + tenChuXeOld + "/" + Constant.XESOHUU + String.valueOf(edtSoXe.getText()));
-        mref.removeValue();
-
-    }
 
     private void kiemtraEditXe() {
         //kiem tra xe đã có, if update chuxe mới thi remove chuxe cu
@@ -280,10 +283,19 @@ public class AddEditXeFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChildren()) {
-                    Log.d("bbisno", "kq la" + dataSnapshot.hasChildren());
-                    delChuXeOld();
+                    Xe xe = dataSnapshot.getValue(Xe.class);
+                    Map<String, Object> chuxe = xe.getChuXe();
+                    if (chuxe != null) {
+                        for (String cx : chuxe.keySet()) {
+                            String t = Constant.REF_CHUXE + cx + "/" + Constant.XESOHUU + String.valueOf(edtSoXe.getText());
+                            Untils.delXeSoHuu(t);
+                        }
+
+                    }
+
+
                 }
-                Log.d("bbisno", "kq la" + dataSnapshot.hasChildren());
+
 
             }
 

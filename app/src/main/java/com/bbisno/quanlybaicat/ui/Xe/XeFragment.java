@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.widget.Spinner;
 import com.bbisno.quanlybaicat.helper.DividerItemDecoration;
 import com.bbisno.quanlybaicat.Models.Xe;
 import com.bbisno.quanlybaicat.R;
+import com.bbisno.quanlybaicat.helper.SimpleItemTouchHelperCallback;
 import com.bbisno.quanlybaicat.ultils.Constant;
 import com.firebase.client.Firebase;
 
@@ -98,7 +100,7 @@ public class XeFragment extends Fragment {
         Firebase mRefXe = firebaseRef.child(getString(R.string.firebase_link_xe));
         Firebase mRefChuXe = firebaseRef.child(getString(R.string.firebase_link_chuxe));
 
-        mAdapter = new ListXeAdapter(Xe.class, R.layout.row_item_xe, ListXeAdapter.XeViewHolder.class, mRefXe) {
+        mAdapter = new ListXeAdapter(getActivity(),Xe.class, R.layout.row_item_xe, ListXeAdapter.XeViewHolder.class, mRefXe) {
             @Override
             protected void populateViewHolder(XeViewHolder xeViewHolder, final Xe xe, final int i) {
                 xeViewHolder.tvSoXe.setText(String.valueOf(xe.getSoXe()));
@@ -106,7 +108,7 @@ public class XeFragment extends Fragment {
                 xeViewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("bbisno","item click"+i+" - "+xe.getSoXe());
+
                         String soxe = String.valueOf(xe.getSoXe());
                         sendDatatoEditXe(soxe);
                     }
@@ -114,6 +116,11 @@ public class XeFragment extends Fragment {
             }
         };
         mRecyclerViewXe.addItemDecoration(new DividerItemDecoration(getContext(),LinearLayoutManager.VERTICAL));
+       // drag và swipe list data
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(mRecyclerViewXe);
+
 
 
 
