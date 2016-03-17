@@ -51,7 +51,7 @@ public class ListXeAdapter extends FirebaseRecyclerAdapter<Xe, ListXeAdapter.XeV
 
         //Tạo Dialog hỏi có muốn xóa hay ko
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("Có chắc là muốn xóa: " + xe.getSoXe());
+        builder.setMessage("Có chắc là muốn xóa: " + xe.getSoXe());
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -86,7 +86,7 @@ public class ListXeAdapter extends FirebaseRecyclerAdapter<Xe, ListXeAdapter.XeV
             }
         });
         builder.show();
-        notify();
+        notifyDataSetChanged();
 
 
     }
