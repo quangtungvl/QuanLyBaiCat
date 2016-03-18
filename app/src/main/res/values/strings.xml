@@ -17,4 +17,5 @@
     <string name="toast_luuthanhcong">" lưu thành công"</string>
     <string name="toast_chuachonloaixe">Chưa chọn loại xe</string>
     <string name="toast_chuanhapsoxe">Chưa nhập số xe</string>
+    <string name="title_addeditcongtrinh">Thêm sửa Công Trình</string>
 </resources>

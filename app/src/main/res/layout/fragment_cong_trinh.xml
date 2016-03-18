@@ -2,12 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CongTrinh.CongTrinhFragment">
+    tools:context=".ui.CongTrinh.CongTrinhFragment"
+    android:padding="16dp">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Cong Trinh" />
+        android:id="@+id/mRV_CT_list">
+
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bbisno.quanlybaicat.R;
+import com.bbisno.quanlybaicat.ultils.Constant;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,7 +82,7 @@ public class CongTrinhFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id==R.id.action_add){
-            mListener.onFragmentInteraction("CongTrinh");
+            mListener.onFragmentInteraction(Constant.ADDCONGTRINH);
 
         }
         return super.onOptionsItemSelected(item);
@@ -119,5 +120,6 @@ public class CongTrinhFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(String openAddEdit);
+        void onFragmentInteraction(String openAddEdit, String tenCongTrinh);
     }
 }

@@ -29,6 +29,11 @@ public class Untils {
         delXe.removeValue();
 
     }
+    public static String chuanhoaString (String str){
+        str = str.trim();
+        str=str.replaceAll("\\s+","");
+        return str;
+    }
 
 
 }

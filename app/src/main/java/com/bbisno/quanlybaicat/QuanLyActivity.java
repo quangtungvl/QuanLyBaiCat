@@ -1,6 +1,5 @@
 package com.bbisno.quanlybaicat;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -24,7 +23,6 @@ import com.bbisno.quanlybaicat.ui.CongTrinh.PhieuXuatFragment;
 import com.bbisno.quanlybaicat.ui.SaLan.SalanFragment;
 import com.bbisno.quanlybaicat.ui.Xe.XeFragment;
 import com.bbisno.quanlybaicat.ultils.Constant;
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -137,7 +135,7 @@ public class QuanLyActivity extends AppCompatActivity implements NavigationView.
         if (openAddEdit.equalsIgnoreCase("ChuXe")) {
             openFragmentsAddEdit(new AddEditChuXeFragment());
 
-        } else if (openAddEdit.equalsIgnoreCase("CongTrinh")) {
+        } else if (openAddEdit.equalsIgnoreCase(Constant.ADDCONGTRINH)) {
             openFragmentsAddEdit(new AddEditCongTrinhFragment());
 
         } else if (openAddEdit.equalsIgnoreCase(Constant.ADDXE)) {
@@ -160,6 +158,9 @@ public class QuanLyActivity extends AppCompatActivity implements NavigationView.
     public void onFragmentInteraction(String openAddEdit, String data) {
         if (openAddEdit.equalsIgnoreCase(Constant.EDITXE)) {
             openFragmentsAddEdit(new AddEditXeFragment().newInstance(openAddEdit,data));
+
+        }if (openAddEdit.equalsIgnoreCase(Constant.EDITCONGTRINH)) {
+            openFragmentsAddEdit(new AddEditCongTrinhFragment().newInstance(openAddEdit,data));
 
         }
 
