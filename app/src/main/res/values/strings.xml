@@ -18,4 +18,5 @@
     <string name="toast_chuachonloaixe">Chưa chọn loại xe</string>
     <string name="toast_chuanhapsoxe">Chưa nhập số xe</string>
     <string name="title_addeditcongtrinh">Thêm sửa Công Trình</string>
+    <string name="title_quanlycongtrinh">Quản Lý Công Trình</string>
 </resources>

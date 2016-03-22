@@ -3,6 +3,9 @@ package com.bbisno.quanlybaicat.ui.CongTrinh;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,8 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bbisno.quanlybaicat.Models.CongTrinh;
 import com.bbisno.quanlybaicat.R;
 import com.bbisno.quanlybaicat.ultils.Constant;
+import com.firebase.client.Firebase;
+import com.firebase.ui.FirebaseRecyclerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +36,12 @@ public class CongTrinhFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    //
+    private RecyclerView mRVCongTrinh;
+    private LinearLayoutManager mLayoutManager;
+    private CTrinhListAdapter mAdapter;
+    Firebase mRefCT;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -69,8 +81,21 @@ public class CongTrinhFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        getActivity().setTitle("Quản Lý Công Trình");
-        return inflater.inflate(R.layout.fragment_cong_trinh, container, false);
+        getActivity().setTitle(getString(R.string.title_quanlycongtrinh));
+        View rootView = inflater.inflate(R.layout.fragment_cong_trinh, container, false);
+
+        mRVCongTrinh = (RecyclerView) rootView.findViewById(R.id.mRV_CT_list);
+        mRVCongTrinh.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRVCongTrinh.setLayoutManager(mLayoutManager);
+//        mRVCongTrinh.setItemAnimator(new DefaultItemAnimator());
+
+        mRefCT = new Firebase(Constant.REF_CONGTRINH);
+        mAdapter = new CTrinhListAdapter(CongTrinh.class,R.layout.row_item_congtrinh, CTrinhListAdapter.CTViewHolder.class,mRefCT);
+        mRVCongTrinh.setAdapter(mAdapter);
+
+
+        return rootView;
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
